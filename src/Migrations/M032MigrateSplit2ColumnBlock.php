@@ -222,9 +222,9 @@ class M032MigrateSplit2ColumnBlock extends MigrationScript
         $block_attrs['column1']['title'] = $block['title'] ?? '';
         $block_attrs['column1']['description'] = wp_trim_words($block['issue_description'] ?? '', 12);
         $block_attrs['column1']['link_text'] = $block['issue_link_text'] ?? '';
-        $block_attrs['column1']['link_path'] = $block['issue_link_path'] ?? '';
+        $block_attrs['column1']['link_path'] = (string)$block['issue_link_path'] ?? '';
         $block_attrs['column1']['image_id'] = $block['issue_image_id'] ?? '';
-        $block_attrs['column1']['image_src'] = $block['issue_image_src'] ?? '';
+        $block_attrs['column1']['image_src'] = (string)$block['issue_image_src'] ?? '';
 
         $block_attrs['column2']['title'] = $block['tag_name'] ?? '';
         $block_attrs['column2']['description'] = wp_trim_words($block['tag_description'] ?? '', 12);
@@ -232,7 +232,7 @@ class M032MigrateSplit2ColumnBlock extends MigrationScript
         $block_attrs['column2']['button_link'] = $block['button_link'] ?? '';
         $block_attrs['column2']['link_path'] = $block['tag_link'] ?? '';
         $block_attrs['column2']['image_id'] = $block['tag_image_id'] ?? '';
-        $block_attrs['column2']['image_src'] = $block['tag_image_src'] ?? '';
+        $block_attrs['column2']['image_src'] = (string)$block['tag_image_src'] ?? '';
 
         return $block_attrs;
     }

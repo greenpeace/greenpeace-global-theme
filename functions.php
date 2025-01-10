@@ -414,7 +414,9 @@ function render_navigation_block(array $attributes): string
     // For parent pages, get the previous and next siblings in the menu order
     $output = '';
     $siblings = array_filter($menu_items, function ($item) use ($nav_menu_item) {
-        return $item->menu_item_parent === $nav_menu_item->menu_item_parent;
+        return $item !== null
+            && $nav_menu_item !== null
+            && $item->menu_item_parent === $nav_menu_item->menu_item_parent;
     });
 
     $siblings = array_values($siblings);
@@ -435,7 +437,7 @@ function render_navigation_block(array $attributes): string
     // For child pages, only show link to the parent
     if ($submenu_page->menu_item_parent !== 0) {
         $parent_item = array_filter($menu_items, function ($item) use ($submenu_page) {
-            return (int) $item->ID === (int) $submenu_page->menu_item_parent;
+            return $submenu_page !== null && (int) $item->ID === (int) $submenu_page->menu_item_parent;
         });
 
         $parent_item = reset($parent_item);
