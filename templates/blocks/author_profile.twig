@@ -5,7 +5,7 @@
                 <figure class="author-block-image d-none d-sm-none d-md-block">
                     <img
                         itemprop="image"
-                        src="{{ fn('get_avatar_url', post.author.id, {'size' : 294 }) | replace({'=s96-c':""}) }}"
+                        src="{{ fn('get_avatar_url', post.author.id, {'size' : 294, 'default': default_avatar}) | replace({'=s96-c':""}) }}"
                         alt="{{ post.author.name }}"
                     />
                 </figure>
@@ -16,7 +16,7 @@
                     <figure class="author-block-image d-block d-sm-block d-md-none">
                         <img
                             itemprop="image"
-                            src="{{ fn('get_avatar_url', post.author.id, {'size' : 294 }) | replace({'=s96-c':""}) }}"
+                            src="{{ fn('get_avatar_url', post.author.id, {'size' : 294, 'default': default_avatar}) | replace({'=s96-c':""}) }}"
                             alt="{{ post.author.name }}"
                         />
                     </figure>

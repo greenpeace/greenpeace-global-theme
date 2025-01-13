@@ -762,6 +762,14 @@ class MasterSite extends TimberSite
         // IA: Tabs menu on mobile.
         $context['mobile_tabs_menu'] = (bool) planet4_get_option('new_ia');
 
+        // Default avatar.
+        if (defined('WP_DEBUG') && WP_DEBUG === true) {
+            // Gravatar throws an error for local dev default_avatar URL, so the default value is used.
+            $context['default_avatar'] = 'mm'; //Mystery Man
+        } else {
+            $context['default_avatar'] = get_template_directory_uri() . '/images/p4-avatar.jpg';
+        }
+
         return $context;
     }
 

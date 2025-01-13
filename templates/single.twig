@@ -48,7 +48,7 @@
                 <div class="single-post-meta">
                     {% if not post.get_author_override and post.author.avatar %}
                         <img itemprop="image" class="author-pic"
-                            src="{{ fn('get_avatar_url', post.author.id, {'size' : 50, 'default': 'mm'}) }}"
+                            src="{{ fn('get_avatar_url', post.author.id, {'size' : 50, 'default': default_avatar}) }}"
                             alt="{{ post.author.avatar }}">
                     {% endif %}
                     <div class="d-inline-block">

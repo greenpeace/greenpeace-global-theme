@@ -5,7 +5,7 @@
         {% if ( author.avatar ) %}
             <figure class="author-image" aria-label="{{ __( 'Picture of ' ~ author.name , 'planet4-master-theme' ) }}">
                 <img itemprop="image" class="author-pic"
-                     src="{{ fn('get_avatar_url', author.id, {'size' : 300}) | replace({'=s96-c':""}) }}"
+                     src="{{ fn('get_avatar_url', author.id, {'size' : 300, 'default': default_avatar}) | replace({'=s96-c':""}) }}"
                      alt="{{ author.name }}">
             </figure>
         {% endif %}
