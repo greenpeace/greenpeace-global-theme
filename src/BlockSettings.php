@@ -34,6 +34,7 @@ class BlockSettings
         self::P4_BLOCKS_PREFIX . '/spreadsheet',
         self::P4_BLOCKS_PREFIX . '/take-action-boxout',
         self::P4_BLOCKS_PREFIX . '/timeline',
+        self::P4_BLOCKS_PREFIX . '/topic-link',
         self::HUBSPOT_FORMS_BLOCK,
         self::GRAVITY_FORMS_BLOCK,
     ];
