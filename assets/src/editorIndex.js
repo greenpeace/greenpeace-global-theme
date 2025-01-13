@@ -12,6 +12,10 @@ import {registerColumnsBlock} from './blocks/Columns/ColumnsBlock';
 import {registerBlockStyles} from './block-styles';
 import {registerBlockVariations} from './block-variations';
 import {registerActionButtonTextBlock} from './blocks/ActionCustomButtonText';
+import {addButtonLinkPasteWarning} from './block-editor/addButtonLinkPasteWarning';
+import {addBlockFilters} from './block-editor/BlockFilters';
+import {replaceTaxonomyTermSelectors} from './block-editor/replaceTaxonomyTermSelectors';
+import {setupImageBlockExtension} from './block-editor/setupImageBlockExtension';
 
 wp.domReady(() => {
   // Blocks
@@ -37,10 +41,12 @@ wp.domReady(() => {
 
   // Block variations
   registerBlockVariations();
+
+  // Editor behaviour.
+  setupQueryLoopBlockExtension();
+  setupCustomSidebar();
+  addButtonLinkPasteWarning();
+  addBlockFilters();
+  replaceTaxonomyTermSelectors();
+  setupImageBlockExtension();
 });
-
-setupCustomSidebar();
-
-// Setup new attributes to the core/query.
-// It should be executed after the DOM is ready
-setupQueryLoopBlockExtension();

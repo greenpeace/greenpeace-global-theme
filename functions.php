@@ -105,6 +105,7 @@ add_action(
         Api\Covers::register_endpoint();
         Api\Articles::register_endpoint();
         Api\SocialMedia::register_endpoint();
+        Api\AnalyticsValues::register_endpoint();
     }
 );
 
