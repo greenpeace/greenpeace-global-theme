@@ -676,11 +676,11 @@ class GravityFormsExtensions
     /**
      * Client side dynamic population of form fields
      *
-     * @param array $form The different form fields present
+     * @param array|bool $form The different form fields present
      *
      * @return mixed
      */
-    public function p4_client_side_gravityforms_prefill(array $form): array
+    public function p4_client_side_gravityforms_prefill($form): array
     {
         $supported_field_types = ['GF_Field_Hidden'];
 
