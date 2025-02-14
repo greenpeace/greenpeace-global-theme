@@ -41,6 +41,7 @@ use P4\MasterTheme\Migrations\M036RemoveEnFormOptions;
 use P4\MasterTheme\Migrations\M037MigrateCoversContentBlockToPostsListBlock;
 use P4\MasterTheme\Migrations\M038RemoveCustomSiteIcon;
 use P4\MasterTheme\Migrations\M039EnableNewSocialSharePlatforms;
+use P4\MasterTheme\Migrations\M040MigrateArticlesBlockToPostsListBlock;
 
 /**
  * Run any new migration scripts and record results in the log.
@@ -99,6 +100,7 @@ class Migrator
             M037MigrateCoversContentBlockToPostsListBlock::class,
             M038RemoveCustomSiteIcon::class,
             M039EnableNewSocialSharePlatforms::class,
+            M040MigrateArticlesBlockToPostsListBlock::class,
         ];
 
         // Loop migrations and run those that haven't run yet.
