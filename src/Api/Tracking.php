@@ -38,6 +38,7 @@ class Tracking
 
                     return [
                         'logins' => self::get_logins($params),
+                        'content_created' => self::get_content_created($params),
                     ];
                 },
                 'permission_callback' => function (WP_REST_Request $request) {
@@ -120,5 +121,40 @@ class Tracking
         $response['total'] = count($data);
 
         return $response;
+    }
+
+    /**
+     * Get last logins filtered by days.
+     *
+     * @param array $params refers to request params
+     * @return array Get logins.
+    */
+    private static function get_content_created(array $params): array
+    {
+        global $wpdb;
+
+        $response = [];
+
+        $query = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT count(ID) as total, post_type
+                FROM wp_posts
+                WHERE post_date >= NOW() - INTERVAL %d  DAY
+                AND post_type IN ('post', 'page', 'p4_action')
+                GROUP BY post_type",
+                $params['last_days']
+            ),
+            OBJECT
+        );
+
+        $data = array();
+
+        foreach ($query as $row) {
+            $data[$row->post_type] = [
+                'total' => (int) $row->total,
+            ];
+        }
+
+        return $data;
     }
 }
