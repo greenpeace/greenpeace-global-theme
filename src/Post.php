@@ -686,6 +686,9 @@ class Post extends TimberPost
         // For parent pages, get the previous and next siblings in the menu order
         $output = '';
         $siblings = array_filter($menu_items, function ($item) use ($nav_menu_item) {
+            if (!$item) {
+                return false;
+            }
             return $item->menu_item_parent === $nav_menu_item->menu_item_parent;
         });
 
