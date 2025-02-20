@@ -54,6 +54,34 @@ class GravityFormsExtensions
         ],
     ];
 
+    public const P4_SHARE_BUTTONS = [
+        [
+            'label' => 'WhatsApp',
+            'name' => 'whatsapp',
+            'default_value' => 1,
+        ],
+        [
+            'label' => 'Facebook',
+            'name' => 'facebook',
+            'default_value' => 1,
+        ],
+        [
+            'label' => 'Twitter',
+            'name' => 'twitter',
+            'default_value' => 1,
+        ],
+        [
+            'label' => 'Email',
+            'name' => 'email',
+            'default_value' => 1,
+        ],
+        [
+            'label' => 'Native share (mobile only)',
+            'name' => 'native',
+            'default_value' => 1,
+        ],
+    ];
+
     public array $current_entry = [];
 
     public string $is_payment_successful = '';
@@ -341,6 +369,17 @@ class GravityFormsExtensions
             $fields = array_merge($fields, $share_buttons);
         }
 
+        $apply_social_sharing_options = planet4_get_option('apply_social_sharing_options', 'posts_and_forms');
+
+        if ($apply_social_sharing_options === "posts") {
+            $fields['p4_share_buttons']['fields'][] = [
+                'type' => 'checkbox',
+                'name' => 'p4_gf_share_platforms',
+                'label' => __('Show share buttons below message', 'planet4-master-theme-backend'),
+                'choices' => self::P4_SHARE_BUTTONS,
+            ];
+        }
+
         $fields['p4_share_buttons']['fields'][] = [
             'type' => 'text',
             'name' => 'p4_gf_share_text_override',
@@ -464,18 +503,31 @@ class GravityFormsExtensions
             </script>";
         }
 
-        $social_share_options = planet4_get_option('social_share_options', []);
+        $share_platforms = [
+            'facebook' => $current_confirmation['facebook'] ?? true,
+            'twitter' => $current_confirmation['twitter'] ?? true,
+            'whatsapp' => $current_confirmation['whatsapp'] ?? true,
+            'native' => $current_confirmation['native'] ?? true,
+            'email' => $current_confirmation['email'] ?? true,
+        ];
 
-        $confirmation_fields = [
-            'confirmation' => $confirmation,
-            'share_platforms' => [
+        $apply_social_sharing_options = planet4_get_option('apply_social_sharing_options', 'posts_and_forms');
+
+        if ($apply_social_sharing_options === "posts_and_forms") {
+            $social_share_options = planet4_get_option('social_share_options', []);
+            $share_platforms = [
                 'facebook' => in_array('facebook', $social_share_options),
                 'twitter' => in_array('twitter', $social_share_options),
                 'whatsapp' => in_array('whatsapp', $social_share_options),
                 'email' => in_array('email', $social_share_options),
                 // We might add a setting for this one in the future, but for now we always enable it in GF.
                 'native' => true,
-            ],
+            ];
+        }
+
+        $confirmation_fields = [
+            'confirmation' => $confirmation,
+            'share_platforms' => $share_platforms,
             'post' => $post,
             'social_accounts' => $post->get_social_accounts($context['footer_social_menu'] ?: []),
             'utm_medium' => 'gf-share',

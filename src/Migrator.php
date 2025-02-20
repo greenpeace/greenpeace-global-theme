@@ -42,6 +42,7 @@ use P4\MasterTheme\Migrations\M037MigrateCoversContentBlockToPostsListBlock;
 use P4\MasterTheme\Migrations\M038RemoveCustomSiteIcon;
 use P4\MasterTheme\Migrations\M039EnableNewSocialSharePlatforms;
 use P4\MasterTheme\Migrations\M040ReplaceSpecialCharactersInPostsContent;
+use P4\MasterTheme\Migrations\M041SetDefaultSocialSharingOption;
 
 /**
  * Run any new migration scripts and record results in the log.
@@ -101,6 +102,7 @@ class Migrator
             M038RemoveCustomSiteIcon::class,
             M039EnableNewSocialSharePlatforms::class,
             M040ReplaceSpecialCharactersInPostsContent::class,
+            M041SetDefaultSocialSharingOption::class,
         ];
 
         // Loop migrations and run those that haven't run yet.

@@ -412,6 +412,16 @@ class Settings
                         'type' => 'social_share_checkboxes',
                         'default' => [],
                     ],
+                    [
+                        'name' => __('Apply social sharing options', 'planet4-master-theme-backend'),
+                        'id' => 'apply_social_sharing_options',
+                        'type' => 'radio',
+                        'options' => [
+                            'posts' => __('Posts', 'planet4-master-theme-backend'),
+                            'posts_and_forms' => __('Posts & Forms', 'planet4-master-theme-backend'),
+                        ],
+                        'default' => 'posts_and_forms',
+                    ],
                 ],
             ],
             'planet4_settings_404_page' => [
