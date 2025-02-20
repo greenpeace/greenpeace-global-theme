@@ -1,12 +1,10 @@
-@mixin adapt-padding-inline-start($containerWidth) {
-  padding-inline-start: calc(100% - (#{$containerWidth} / 2) + 0.75rem);
-}
-
-@mixin adapt-padding-inline-end($containerWidth) {
-  padding-inline-end: calc(100% - (#{$containerWidth} / 2) + 0.75rem);
-}
-
 .wp-block-media-text {
+  @include mobile-only {
+    .wp-block-media-text__content {
+      margin-top: $sp-3;
+    }
+  }
+
   &:not(.force-no-lightbox) img {
     cursor: pointer;
   }
@@ -16,9 +14,16 @@
   }
 
   &.alignfull .wp-block-media-text__content {
-    max-width: 540px;
+    max-width: 440px;
     width: 100%;
-    margin: auto;
+
+    @include x-large-and-up {
+      max-width: 522px;
+    }
+
+    @include xx-large-and-up {
+      max-width: 612px;
+    }
   }
 
   .wp-block-media-text__content {
@@ -30,35 +35,7 @@
     width: 100%;
   }
 
-  &.alignfull.has-media-on-the-right .wp-block-media-text__content {
-    @include large-and-up {
-      @include adapt-padding-inline-start(960px);
-    }
-
-    @include x-large-and-up {
-      @include adapt-padding-inline-start(1140px);
-    }
-
-    @include xx-large-and-up {
-      @include adapt-padding-inline-start(1320px);
-    }
-  }
-
-  &.alignfull:not(.has-media-on-the-right) .wp-block-media-text__content {
-    @include large-and-up {
-      @include adapt-padding-inline-end(960px);
-    }
-
-    @include x-large-and-up {
-      @include adapt-padding-inline-end(1140px);
-    }
-
-    @include xx-large-and-up {
-      @include adapt-padding-inline-end(1320px);
-    }
-  }
-
-  @include large-and-up {
+  @include x-large-and-up {
     &.has-media-on-the-right .wp-block-media-text__content {
       padding-inline-end: $sp-6;
     }
