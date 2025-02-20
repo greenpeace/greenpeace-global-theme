@@ -19,8 +19,8 @@
                             data-ga-label="{{ page_category }}">
                         {{ item.title }}
                     </a>
-
                     {% if item.children is not empty %}
+                        <button class="accessible-nav-link" tabindex="0"></button>
                         {% include 'navigation-submenu.twig' with { menu: item } %}
                     {% endif %}
                 </li>
@@ -30,7 +30,7 @@
                 {% set donate_menu = donate_menu_items|first %}
                 <li class="nav-donate">
                     <a
-                        class="btn btn-donate {{ donate_menu.children ? 'dropdown' : '' }}"
+                        class="btn btn-donate"
                         href="{{ donate_menu.link }}"
                         data-ga-category="Menu Navigation"
                         data-ga-action="Donate"
@@ -38,6 +38,7 @@
                         {{ donate_menu.title }}
                     </a>
                     {% if donate_menu.children is not empty %}
+                        <button class="accessible-nav-link" tabindex="0"></button>
                         {% include 'navigation-submenu.twig' with { menu: donate_menu } %}
                     {% endif %}
                 </li>

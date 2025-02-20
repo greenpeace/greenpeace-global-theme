@@ -262,11 +262,39 @@ a.nav-link:hover:before,
   }
 }
 
+@mixin dropdown-icon {
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  position: absolute;
+  background: transparent;
+  background-image: url("../../images/chevron.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform: rotate(90deg);
+  border: 0;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  &.rotate {
+    transform: rotate(270deg);
+  }
+}
+
 .nav-donate {
   padding: $sp-2 0;
+  position: relative;
 
   @include large-and-up {
     padding: 0;
+  }
+
+  .accessible-nav-link {
+    @include dropdown-icon;
+    right: $sp-2;
   }
 }
 
@@ -281,6 +309,7 @@ a.nav-link:hover:before,
     font-weight: var(--font-weight-regular);
   }
   color: inherit;
+  position: relative;
 
   @include large-and-up {
     line-height: var(--navbar-menu-height);
@@ -292,6 +321,27 @@ a.nav-link:hover:before,
       }
     }
   }
+}
+
+.nav-item {
+  .accessible-nav-link {
+    @include dropdown-icon;
+    right: -$sp-2;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.nav-item:has(.nav-submenu:focus-within) .accessible-nav-link,
+.accessible-nav-link:focus {
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  pointer-events: auto;
+  outline: 2px solid #99c3ff;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .nav-donate .nav-submenu {
